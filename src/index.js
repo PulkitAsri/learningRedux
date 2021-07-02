@@ -3,4 +3,57 @@ import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
 
+import {createStore} from "redux";
+
+
+
+
+
+//Redux
+
+//1-> Store
+//2-> Actions
+
+//functions that return a JS_object
+const increment =()=>{
+    return {
+        type: "INCREMENT"
+    }
+}
+
+const  decrement =()=>{
+    return {
+        type: "DECREMENT"
+    }
+}
+
+
+//3-> Reducer
+
+//state=0
+
+const counter = (state = 0, action)=>{
+    switch (action.type) {
+        case "INCREMENT":
+            return state + 1;
+            
+        case "DECREMENT":
+            return state - 1;
+        
+    }
+
+}
+
+
+//adding this function to store
+
+let store = createStore(counter);
+store.subscribe(()=> console.log(store.getState()));
+
+//4-> Dispatch 
+store.dispatch(increment);
+
+
+
+
 ReactDOM.render(<App />, document.getElementById("root"));
